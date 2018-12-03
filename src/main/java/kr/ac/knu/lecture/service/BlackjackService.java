@@ -3,14 +3,8 @@ package kr.ac.knu.lecture.service;
 import kr.ac.knu.lecture.domain.User;
 import kr.ac.knu.lecture.game.blackjack.Deck;
 import kr.ac.knu.lecture.game.blackjack.GameRoom;
-<<<<<<< HEAD
-import kr.ac.knu.lecture.repository.userRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-=======
 import kr.ac.knu.lecture.repository.UserRepository;
 import lombok.AllArgsConstructor;
->>>>>>> c8f8a55db2948516935f6e0983ae54572e1f5fa7
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -23,11 +17,7 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class BlackjackService {
-<<<<<<< HEAD
-    private final userRepository userRepository;
-=======
     private final UserRepository userRepository;
->>>>>>> c8f8a55db2948516935f6e0983ae54572e1f5fa7
     private final int DECK_NUMBER = 1;
     private final Map<String, GameRoom> gameRoomMap = new HashMap<>();
 
@@ -85,25 +75,12 @@ public class BlackjackService {
     }
 
     private void updateGameResult(GameRoom gameRoom) {
-<<<<<<< HEAD
-        if(gameRoom.isFinished()){
-            gameRoom.getPlayerList().forEach((loginId,player)->{
-                User playUser = userRepository.findById(loginId).orElseThrow(()->new RuntimeException());
-                playUser.setAccount(player.getBalance());
-=======
         if (gameRoom.isFinished()) {
             gameRoom.getPlayerList().forEach((loginId, player) -> {
                 User playUser = userRepository.findById(loginId).orElseThrow(() -> new RuntimeException());
                 playUser.setAccount(player.getBalance());
-
->>>>>>> c8f8a55db2948516935f6e0983ae54572e1f5fa7
                 userRepository.save(playUser);
             });
         }
     }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> c8f8a55db2948516935f6e0983ae54572e1f5fa7
 }

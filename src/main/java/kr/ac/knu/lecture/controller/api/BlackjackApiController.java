@@ -2,11 +2,7 @@ package kr.ac.knu.lecture.controller.api;
 
 import kr.ac.knu.lecture.domain.User;
 import kr.ac.knu.lecture.game.blackjack.GameRoom;
-<<<<<<< HEAD
-import kr.ac.knu.lecture.repository.userRepository;
-=======
 import kr.ac.knu.lecture.repository.UserRepository;
->>>>>>> c8f8a55db2948516935f6e0983ae54572e1f5fa7
 import kr.ac.knu.lecture.service.BlackjackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -28,8 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class BlackjackApiController {
     @Autowired
-    private userRepository userRepository;
-    @Autowired
     private BlackjackService blackjackService;
 
     @Autowired
@@ -50,10 +44,6 @@ public class BlackjackApiController {
     @PostMapping("/rooms/{roomId}/hit")
     public GameRoom hit(@AuthenticationPrincipal User user, @PathVariable String roomId) {
         User currentUser = userRepository.getOne(user.getName());
-<<<<<<< HEAD
-=======
-
->>>>>>> c8f8a55db2948516935f6e0983ae54572e1f5fa7
         return blackjackService.hit(roomId, currentUser);
     }
 

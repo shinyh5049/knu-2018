@@ -28,12 +28,8 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 import org.springframework.web.filter.CompositeFilter;
 
 import javax.servlet.Filter;
-<<<<<<< HEAD
-=======
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
->>>>>>> c8f8a55db2948516935f6e0983ae54572e1f5fa7
 import java.util.Optional;
 
 /**
@@ -51,11 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and().csrf().disable()
                 .antMatcher("/**").authorizeRequests()
-<<<<<<< HEAD
-                .antMatchers("/", "/view/**", "/login**", "/webjars/**", "/error**" ,"/blackjack/**","/h2-consoole/**")
-=======
                 .antMatchers("/", "/view/**", "/login**", "/webjars/**", "/error**" ,"/blackjack/**", "/h2-console/**")
->>>>>>> c8f8a55db2948516935f6e0983ae54572e1f5fa7
                 .permitAll().anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/"))
@@ -122,23 +114,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public ResourceServerProperties githubResource() {
         return new ResourceServerProperties();
     }
-
-    @Autowired
-    private kr.ac.knu.lecture.repository.userRepository userRepository;
     @Bean
-<<<<<<< HEAD
-    public PrincipalExtractor principalExtractor() {
-        return (map) -> {
-            String loginId = (String) map.get("login");
-            Optional<User> user = userRepository.findById(loginId);
-
-            if(user.isPresent()){
-                return user.get();
-            }
-            User newUser = new User((String) map.get("login"), OAuthProvider.GITHUB, String.valueOf(map.get("id")), 50000L);
-            return userRepository.save(newUser);
-         // return new User((String) map.get("login"), OAuthProvider.GITHUB, String.valueOf(map.get("id")), 50000L);
-=======
     @ConfigurationProperties("naver.client")
     public AuthorizationCodeResourceDetails naver() {
         return new AuthorizationCodeResourceDetails();
@@ -178,7 +154,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
             User newUser = new User(name, OAuthProvider.NAVER, id, 60000L);
             return userRepository.save(newUser);
->>>>>>> c8f8a55db2948516935f6e0983ae54572e1f5fa7
         };
     }
 
