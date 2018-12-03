@@ -409,13 +409,18 @@
     <div>
         <div class="buttons"><div class="btn" id="login_button">Login/Signup</div></div>
     </div>
+
 </div>
 <div class="page" id="lobby" style="display: none">
     <div>
         <div class="buttons"><div class="btn" id="create_room_button">Create</div></div>
     </div>
+    <div>
+        <div class="buttons"><div class="btn" id="logOut">logOut</div></div>
+    </div>
 </div>
 <div class="page" id="game" style="display: none">
+
     <div class="dealer-cards"></div>
     <div class="clear"></div>
     <div class="player-cards"></div>
@@ -457,6 +462,9 @@
 
     $('#login_button').click(function() {
         location.href = '/login'
+    })
+    $('#logOut').click(function() {
+        location.href = '/logOut'
     })
 
     $('#create_room_button').click(function() {

@@ -2,6 +2,7 @@ package kr.ac.knu.lecture.controller.api;
 
 import kr.ac.knu.lecture.domain.User;
 import kr.ac.knu.lecture.game.blackjack.GameRoom;
+import kr.ac.knu.lecture.repository.userRepository;
 import kr.ac.knu.lecture.service.BlackjackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,7 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/black-jack")
 @CrossOrigin
+
 public class BlackjackApiController {
+    @Autowired
+    private userRepository userRepository;
     @Autowired
     private BlackjackService blackjackService;
 
@@ -31,17 +35,20 @@ public class BlackjackApiController {
 
     @PostMapping(value = "/rooms/{roomId}/bet", consumes = MediaType.APPLICATION_JSON_VALUE)
     public GameRoom bet(@AuthenticationPrincipal User user, @PathVariable String roomId, @RequestBody long betMoney) {
-        return blackjackService.bet(roomId, user, betMoney);
+        User currentUser = userRepository.getOne(user.getName());
+        return blackjackService.bet(roomId, currentUser, betMoney);
     }
 
     @PostMapping("/rooms/{roomId}/hit")
     public GameRoom hit(@AuthenticationPrincipal User user, @PathVariable String roomId) {
-        return blackjackService.hit(roomId, user);
+        User currentUser = userRepository.getOne(user.getName());
+        return blackjackService.hit(roomId, currentUser);
     }
 
     @PostMapping("/rooms/{roomId}/stand")
     public GameRoom stand(@AuthenticationPrincipal User user, @PathVariable String roomId) {
-        return blackjackService.stand(roomId, user);
+        User currentUser = userRepository.getOne(user.getName());
+        return blackjackService.stand(roomId, currentUser);
     }
 
     @GetMapping("/rooms/{roomId}")
