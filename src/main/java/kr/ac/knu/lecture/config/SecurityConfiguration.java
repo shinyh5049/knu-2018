@@ -40,6 +40,8 @@ import java.util.Optional;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private OAuth2ClientContext oauth2ClientContext;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -126,8 +128,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new ResourceServerProperties();
     }
 
-    @Autowired
-    private UserRepository userRepository;
 
     public PrincipalExtractor githubPrincipalExtractor() {
         return (map) -> {
