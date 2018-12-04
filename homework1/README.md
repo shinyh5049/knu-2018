@@ -1,3 +1,4 @@
+
 # homework week
 
 ## 각 조는 하단에 아래와 같은 형식으로 조원의 구성원을 입력하세요. 조장의 github 주소도 가능하면 넣어놔주세요~
@@ -9,24 +10,33 @@
 **00-1조 총원 1명**
 + Robin Kim ([강사](https://github.com/napi0182))
 - - -
+
 **1조 총원 3명**
 + 배한글 ([조장](https://github.com/dxdiag20))   
 + 정우용
 + 신봉근
-
 - - -
+
 **2조 총원 4명**
 + 김재성 ([조장](https://github.com/CuteIU))
 + 양동화
 + 이원탁
 + 한승진
 - - -
+
 **3조 총원 4명**
 + 채호열 ([조장](https://github.com/Cogdof))   
 + 이신홍
 + 최근용
 + 권희수
-- - - 
+- - -
+
+**4조 총원 4명**
++ 이현수 ([조장](https://github.com/Halinee))
++ 조성준
++ 김종원
++ 이승환
+- - -
 
 **5조 총원 3명**
 + 오신혁 ([조장](https://github.com/OhShinHyeok))
@@ -37,8 +47,22 @@
 **6조 총원 4명**
 + 신윤혁 ([조장](https://github.com/shinyh5049))
 + 명성 *취업계 제출로 조장이 대신 commit 함*
-+ 조경호 
++ 조경호
 + 정보연
+- - -
+
+**7조 총원 4명**
++ 김혜지 ([조장](https://github.com/hengzizng))
++ 이원준
++ 김상규
++ 전인준
+- - -
+
+**8조총원 4명**
++ 이주혁 ([조장](https://github.com/leejuhyeok))
++ 이수현
++ 이재빈
++ 김지우
 - - -
 
 **99조 총원 3명**
