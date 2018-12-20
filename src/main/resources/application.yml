@@ -1,5 +1,5 @@
 server:
-  port: 8888
+  port: 8886
 
 spring:
   h2:
@@ -45,8 +45,8 @@ github:
     userInfoUri: https://api.github.com/user
 naver:
   client:
-    clientId: HylBNrnld2nVNQPLdZ6V
-    clientSecret: GgJ8FmAMz5
+    clientId: heabNNLtzhyVz0IujW4K
+    clientSecret: 8t3Nxhps9e
     accessTokenUri: https://nid.naver.com/oauth2.0/token
     userAuthorizationUri: https://nid.naver.com/oauth2.0/authorize
     clientAuthenticationScheme: form
