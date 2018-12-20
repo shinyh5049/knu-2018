@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Data
 public class Card {
-    private final int rank;
+    public final int rank;
     @Getter
-    private final Suit suit;
+    public final Suit suit;
 
     public Card(int rank, Suit suit) {
         if (rank > 13) {

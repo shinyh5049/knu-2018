@@ -15,6 +15,7 @@ public class Player {
     private boolean isPlaying;
     @Getter
     private Hand hand;
+    public Card c1, c2;
 
     public Player(long seedMoney, Hand hand) {
         this.balance = seedMoney;
@@ -39,13 +40,20 @@ public class Player {
     }
 
     public void deal() {
-        hand.drawCard();
-        hand.drawCard();
+        Card c1 = hand.drawCard();
+        Card c2 = hand.drawCard();
     }
 
     public void win() {
         balance += currentBet * 2;
         currentBet = 0;
+    }
+    public void blackjack() {
+        if ((c1.rank == 1 && c1.suit == Suit.SPADES && c2.rank >= 10) ||
+                (c2.rank == 1 && c2.suit == Suit.SPADES && c1.rank >= 10)) {
+            balance += currentBet * 1.5;
+            currentBet = 0;
+        }
     }
 
     public void tie() {

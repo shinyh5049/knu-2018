@@ -29,14 +29,27 @@ public class Evaluator {
 
         playerMap.forEach((s, player) -> {
             int playerResult = player.getHand().getCardSum();
-            if (playerResult > 21) {
-                player.lost();
-            } else if (playerResult > dealerResult) {
-                player.win();
-            } else if (playerResult == dealerResult) {
-                player.tie();
-            } else {
-                player.lost();
+            if(playerResult <= 21){ //플레이어가 21보다 작을떄
+                if(dealerResult >21){ //딜러가 21보다 크면
+                    player.win();
+                }
+                else if(dealerResult == playerResult){ //딜러와 플레이어가 같으면
+                    player.tie();
+                }
+                else if(dealerResult < playerResult) { // 딜러보다 플레이어가 클때
+                    player.win();
+                }
+                else{
+                    player.lost();
+                }
+            }
+            else { //플레이어가 21보다 클때
+                if (dealerResult >21 ){ //딜러와 플레이어가 같으면)
+                    player.tie();
+                }
+                else if(dealerResult <21){ //딜러의 값이 21보다 작으면
+                    player.lost();
+                }
             }
         });
 
