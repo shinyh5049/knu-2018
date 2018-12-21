@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="background" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -41,13 +41,16 @@
         text-decoration: none;
         color: #06C;
     }
+    body, html {
+        width:100%;
+        height:100%;
+    }
 
     body {
         font-family: Arial, Helvetica, sans-serif;
         color: #333;
         font-size: 15px;
         line-height: 40px;
-        background-color: #FFFFFF;
     }
 
     .clear {
@@ -58,9 +61,9 @@
         width: auto;
         max-width: 900px;
         margin: 0 auto;
-        background-color: #fff;
         min-height: 500px;
         text-align: center;
+        margin-top: 100px;
     }
 
     .dealer-cards .card, .player-cards .card {
@@ -84,6 +87,8 @@
 
     .dealer-total, .player-total {
         margin-top: 10px;
+        font-weight:bold;
+        coor:#333;
     }
 
     .buttons {
@@ -108,7 +113,7 @@
         white-space: nowrap;
         text-decoration: none;
         cursor: pointer;
-        background-color: #A9014B;
+        background-color: #0D47A1;
         border-style: none;
         text-align: center;
         overflow: visible;
@@ -130,11 +135,11 @@
     .btn:focus {
         background-position: 0 -50px;
         color: white;
-        background-color: #c90059;
+        background-color: #1565C0;
     }
 
     .btn:active {
-        background-color: #7c0d3e;
+        background-color: #1E88E5;
         -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.7);
         -webkit-box-shadow: none;
     }
@@ -393,27 +398,28 @@
         color: green;
         font-size: 21px;
     }
+
+    .background {
+        z-index:-10;
+        width:100%;
+        height:100%;
+        position:absolute;
+        background-image:url("http://mblogthumb2.phinf.naver.net/20150603_297/sdglkjg4_1433294465504IGv4a_JPEG/bj1.jpg?type=w2");
+        background-size:cover;
+    }
 </style>
 </head>
 <body>
 
-<div style="position: fixed; top: 0; left: 0;
-height: 100px; width: 100%; background-color: #EEFFEE; opacity: 0.7;">
-    <input type="text" size="2" id="nextCardInput" />
-    <div id="nextCards">
-    </div>
-</div>
+<!--<div style="position: fixed; top: 0; left: 0;-->
+<!--height: 100px; width: 100%; background-color: #EEFFEE; opacity: 0.7;">-->
+    <!--<input type="text" size="2" id="nextCardInput" />-->
+    <!--<div id="nextCards">-->
+    <!--</div>-->
+<!--</div>-->
 
-<div style="height: 100px; width: 100%">
-</div>
 
-<div>
-    <div class="buttons">
-        <div class="btn" id="logout_button">logout</div>
-    </div>
-</div>
-
-<div class="page" id="login">
+<div class="page" id="login" >
     <div>
         <div class="buttons">
             <div class="btn" id="naver_login_button">Naver 로그인</div>
@@ -431,7 +437,9 @@ height: 100px; width: 100%; background-color: #EEFFEE; opacity: 0.7;">
         </div>
     </div>
     <div>
-        <div class="buttons"><div class="btn" id="logOut">logOut</div></div>
+        <div class="buttons">
+            <div class="btn" id="logout_button">Logout</div>
+        </div>
     </div>
 </div>
 <div class="page" id="game" style="display: none">
@@ -490,9 +498,6 @@ height: 100px; width: 100%; background-color: #EEFFEE; opacity: 0.7;">
 
     $('#logout_button').click(function () {
         location.href = '/logout'
-    })
-    $('#logOut').click(function() {
-        location.href = '/logOut'
     })
 
     $('#create_room_button').click(function () {
@@ -555,11 +560,16 @@ height: 100px; width: 100%; background-color: #EEFFEE; opacity: 0.7;">
     })
 
     $('#more').click(function () {
-        var bet = 100;
+        var bet = 1000;
         var currentBet = parseInt($('#bet').html());
+
         var money = parseInt($('#money').html());
         if (money < bet) {
             bet = money;
+        }
+
+        if(currentBet + bet > 10000){
+            return;
         }
 
         $('#bet').html(currentBet + bet);
@@ -567,7 +577,7 @@ height: 100px; width: 100%; background-color: #EEFFEE; opacity: 0.7;">
     });
 
     $('#less').click(function () {
-        var bet = 100;
+        var bet = 1000;
         var currentBet = parseInt($('#bet').html());
         var money = parseInt($('#money').html());
         if (currentBet < bet) {
@@ -617,7 +627,7 @@ height: 100px; width: 100%; background-color: #EEFFEE; opacity: 0.7;">
             $('.player-cards').append('<div id="playerTotal" class="player-total">' + gameRoom.playerList[user.name].hand.cardSum + '</div>')
         }
 
-        $('#bet').html(gameRoom.playerList[user.name].currentBet);
+        //$('#bet').html(gameRoom.playerList[user.name].currentBet);
         $('#money').html(gameRoom.playerList[user.name].balance);
     }
 
