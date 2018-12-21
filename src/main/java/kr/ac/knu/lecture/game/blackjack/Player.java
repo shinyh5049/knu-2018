@@ -15,12 +15,16 @@ public class Player {
     private boolean isPlaying;
     @Getter
     private Hand hand;
-    public Card c1, c2;
+    @Getter
+    private boolean isBlackjack = false;
+    @Getter
+    private boolean isDouble = false;
 
     public Player(long seedMoney, Hand hand) {
         this.balance = seedMoney;
         this.hand = hand;
-
+        isDouble = false;
+        isBlackjack = false;
         isPlaying = false;
     }
 
@@ -40,18 +44,26 @@ public class Player {
     }
 
     public void deal() {
-        Card c1 = hand.drawCard();
-        Card c2 = hand.drawCard();
+        hand.drawCard();
+        hand.drawCard();
+        if (hand.getCardSum() == 11) {
+            isBlackjack = true;
+            stand();
+        }
+    }
+    public void setDouble() {
+        isDouble = true;
     }
 
     public void win() {
-        balance += currentBet * 2;
-        currentBet = 0;
-    }
-    public void blackjack() {
-        if ((c1.rank == 1 && c1.suit == Suit.SPADES && c2.rank >= 10) ||
-                (c2.rank == 1 && c2.suit == Suit.SPADES && c1.rank >= 10)) {
+        if (isBlackjack) {
             balance += currentBet * 1.5;
+        }
+        else if (isDouble) {
+            balance += currentBet * 4;
+        }
+        else {
+            balance += currentBet * 2;
             currentBet = 0;
         }
     }
@@ -66,7 +78,13 @@ public class Player {
     }
 
     public Card hitCard() {
+        int sum = hand.getCardSum();
+        if(sum > 21){
+            stand();
+        }
+
         return hand.drawCard();
+
     }
 
     public void stand() {

@@ -12,6 +12,8 @@ public class Hand {
     private Deck deck;
     @Getter
     private List<Card> cardList = new ArrayList<>();
+    @Getter
+    private int sum = 0;
 
     public Hand(Deck deck) {
         this.deck = deck;
@@ -24,13 +26,22 @@ public class Hand {
     }
 
     public int getCardSum() {
-        return cardList.stream().mapToInt(card -> {
+        sum = cardList.stream().mapToInt(card -> {
             int rank = card.getRank();
-            if (rank > 10) {
+            if(rank == 1){
+                if((sum + 11) <= 21){
+                    return 11;
+                }
+                else
+                    return 1;
+            }
+            else if(rank > 10) {
                 return 10;
             }
             return rank;
         }).sum();
+
+        return sum;
     }
 
     public void reset() {

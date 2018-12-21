@@ -64,9 +64,16 @@ public class GameRoom {
         return player.hitCard();
     }
 
+    public void doubleDown(String name) {
+        Player player = playerList.get(name);
+        player.setDouble();
+        player.placeBet(player.getCurrentBet());
+        player.hitCard();
+        player.stand();
+    }
+
     public void stand(String name) {
         Player player = playerList.get(name);
-
         player.stand();
     }
 
