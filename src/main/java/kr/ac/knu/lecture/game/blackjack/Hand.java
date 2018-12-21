@@ -26,21 +26,20 @@ public class Hand {
     }
 
     public int getCardSum() {
-        sum = cardList.stream().mapToInt(card -> {
-            int rank = card.getRank();
-            if(rank == 1){
-                if((sum + 11) <= 21){
-                    return 11;
-                }
-                else
-                    return 1;
-            }
-            else if(rank > 10) {
-                return 10;
-            }
-            return rank;
-        }).sum();
-
+        int sum = 0;
+        int aceCount = 0;
+        for(int i = 0; i<cardList.size(); i++){
+            int rank = cardList.get(i).getRank();
+            if(rank > 10) sum+=10;
+            else if(rank == 1) aceCount++;
+            else sum+=rank;
+        }
+        if(aceCount>0) {
+            if (sum + (aceCount - 1) + 11 <= 21)
+                sum += (aceCount - 1) + 11;
+            else
+                sum += aceCount;
+        }
         return sum;
     }
 
